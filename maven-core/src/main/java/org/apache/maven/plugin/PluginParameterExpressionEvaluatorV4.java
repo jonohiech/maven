@@ -220,9 +220,9 @@ public class PluginParameterExpressionEvaluatorV4 implements TypeAwareExpression
                 throw new ExpressionEvaluationException(
                         "Error evaluating plugin parameter expression: " + expression, e);
             }
-        } else if (expression.equals("repositorySystemSession")) {
+        } else if ("repositorySystemSession".equals(expression)) {
             // TODO: v4
-        } else if (expression.equals("mojo") || expression.equals("mojoExecution")) {
+        } else if ("mojo".equals(expression) || "mojoExecution".equals(expression)) {
             value = new DefaultMojoExecution(mojoExecution);
         } else if (expression.startsWith("mojo")) {
             // TODO: v4
@@ -241,7 +241,7 @@ public class PluginParameterExpressionEvaluatorV4 implements TypeAwareExpression
                 throw new ExpressionEvaluationException(
                         "Error evaluating plugin parameter expression: " + expression, e);
             }
-        } else if (expression.equals("plugin")) {
+        } else if ("plugin".equals(expression)) {
             // TODO: v4
             value = mojoExecution.getMojoDescriptor().getPluginDescriptor();
         } else if (expression.startsWith("plugin")) {

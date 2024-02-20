@@ -41,7 +41,7 @@ public class DefaultRootLocator implements RootLocator {
         try (InputStream is = Files.newInputStream(pom)) {
             XMLStreamReader parser = new WstxInputFactory().createXMLStreamReader(is);
             if (parser.nextTag() == XMLStreamReader.START_ELEMENT
-                    && parser.getLocalName().equals("project")) {
+                    && "project".equals(parser.getLocalName())) {
                 for (int i = 0; i < parser.getAttributeCount(); i++) {
                     if ("root".equals(parser.getAttributeLocalName(i))) {
                         return Boolean.parseBoolean(parser.getAttributeValue(i));
