@@ -18,6 +18,8 @@
  */
 package org.apache.maven.repository;
 
+import io.github.pixee.security.HostValidator;
+import io.github.pixee.security.Urls;
 import javax.inject.Named;
 import javax.inject.Singleton;
 
@@ -127,7 +129,7 @@ public class DefaultMirrorSelector implements MirrorSelector {
      */
     static boolean isExternalRepo(ArtifactRepository originalRepository) {
         try {
-            URL url = new URL(originalRepository.getUrl());
+            URL url = Urls.create(originalRepository.getUrl(), Urls.HTTP_PROTOCOLS, HostValidator.DENY_COMMON_INFRASTRUCTURE_TARGETS);
             return !(isLocal(url.getHost()) || url.getProtocol().equals("file"));
         } catch (MalformedURLException e) {
             // bad url just skip it here. It should have been validated already, but the wagon lookup will deal with it
@@ -147,7 +149,7 @@ public class DefaultMirrorSelector implements MirrorSelector {
      */
     static boolean isExternalHttpRepo(ArtifactRepository originalRepository) {
         try {
-            URL url = new URL(originalRepository.getUrl());
+            URL url = Urls.create(originalRepository.getUrl(), Urls.HTTP_PROTOCOLS, HostValidator.DENY_COMMON_INFRASTRUCTURE_TARGETS);
             return ("http".equalsIgnoreCase(url.getProtocol())
                             || "dav".equalsIgnoreCase(url.getProtocol())
                             || "dav:http".equalsIgnoreCase(url.getProtocol())
