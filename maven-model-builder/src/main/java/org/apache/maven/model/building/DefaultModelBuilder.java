@@ -1531,10 +1531,10 @@ public class DefaultModelBuilder implements ModelBuilder {
     }
 
     private boolean rawChildVersionReferencesParent(String rawChildModelVersion) {
-        return rawChildModelVersion.equals("${pom.version}")
-                || rawChildModelVersion.equals("${project.version}")
-                || rawChildModelVersion.equals("${pom.parent.version}")
-                || rawChildModelVersion.equals("${project.parent.version}");
+        return "${pom.version}".equals(rawChildModelVersion)
+                || "${project.version}".equals(rawChildModelVersion)
+                || "${pom.parent.version}".equals(rawChildModelVersion)
+                || "${project.parent.version}".equals(rawChildModelVersion);
     }
 
     private ModelSource2 getParentPomFile(Model childModel, Source source) {
@@ -1759,7 +1759,7 @@ public class DefaultModelBuilder implements ModelBuilder {
     }
 
     private boolean match(String match, String text) {
-        return match.equals("*") || match.equals(text);
+        return "*".equals(match) || match.equals(text);
     }
 
     @SuppressWarnings("checkstyle:parameternumber")

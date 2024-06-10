@@ -228,7 +228,7 @@ public class MavenArtifactRepository implements ArtifactRepository {
     private String basedir(String url) {
         String retValue = null;
 
-        if (protocol.equalsIgnoreCase("file")) {
+        if ("file".equalsIgnoreCase(protocol)) {
             retValue = url.substring(protocol.length() + 1);
             retValue = decode(retValue);
             // special case: if omitted // on protocol, keep path as is

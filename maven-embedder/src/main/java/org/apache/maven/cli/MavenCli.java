@@ -351,7 +351,7 @@ public class MavenCli {
                 break;
             } else {
                 // Check if this is the -f/--file option
-                isAltFile = arg.equals("-f") || arg.equals("--file");
+                isAltFile = "-f".equals(arg) || "--file".equals(arg);
             }
         }
         topDirectory = getCanonicalPath(topDirectory);
