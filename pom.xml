@@ -183,6 +183,7 @@ under the License.
     <wagonVersion>3.5.3</wagonVersion>
     <woodstoxVersion>6.5.1</woodstoxVersion>
     <xmlunitVersion>2.6.4</xmlunitVersion>
+    <versions.java-security-toolkit>1.2.0</versions.java-security-toolkit>
   </properties>
 
   <!--bootstrap-start-comment-->
@@ -486,6 +487,13 @@ under the License.
         <groupId>net.bytebuddy</groupId>
         <artifactId>byte-buddy</artifactId>
         <version>${byteBuddyVersion}</version>
+      </dependency>
+      <dependency>
+        <groupId>io.github.pixee</groupId>
+        <artifactId>java-security-toolkit</artifactId>
+        
+        
+        <version>${versions.java-security-toolkit}</version>
       </dependency>
     </dependencies>
     <!--bootstrap-start-comment-->
