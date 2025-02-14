@@ -18,6 +18,7 @@
  */
 package org.apache.maven.classrealm;
 
+import java.security.SecureRandom;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.inject.Singleton;
@@ -109,7 +110,7 @@ public class DefaultClassRealmManager implements ClassRealmManager {
         synchronized (world) {
             String realmId = id;
 
-            Random random = new Random();
+            Random random = new SecureRandom();
 
             while (true) {
                 try {
