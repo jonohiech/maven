@@ -18,6 +18,8 @@
  */
 package org.apache.maven.repository;
 
+import io.github.pixee.security.HostValidator;
+import io.github.pixee.security.Urls;
 import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
@@ -56,7 +58,7 @@ public class TestRepositoryConnector implements RepositoryConnector {
             this.basedir = null;
         } else {
             try {
-                URL url = new URL(repository.getUrl());
+                URL url = Urls.create(repository.getUrl(), Urls.HTTP_PROTOCOLS, HostValidator.DENY_COMMON_INFRASTRUCTURE_TARGETS);
                 if ("file".equals(url.getProtocol())) {
                     basedir = new File(url.getPath());
                 }
