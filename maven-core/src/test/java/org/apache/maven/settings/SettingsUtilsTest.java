@@ -18,6 +18,7 @@
  */
 package org.apache.maven.settings;
 
+import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -62,7 +63,7 @@ class SettingsUtilsTest {
 
     @Test
     void testRoundTripProfiles() {
-        Random entropy = new Random();
+        Random entropy = new SecureRandom();
         ActivationFile af = ActivationFile.newBuilder()
                 .exists("exists" + Long.toHexString(entropy.nextLong()))
                 .missing("missing" + Long.toHexString(entropy.nextLong()))
