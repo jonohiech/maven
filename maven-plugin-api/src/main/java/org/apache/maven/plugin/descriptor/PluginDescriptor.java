@@ -18,6 +18,8 @@
  */
 package org.apache.maven.plugin.descriptor;
 
+import io.github.pixee.security.HostValidator;
+import io.github.pixee.security.Urls;
 import javax.xml.stream.XMLStreamException;
 
 import java.io.File;
@@ -351,7 +353,7 @@ public class PluginDescriptor extends ComponentSetDescriptor implements Cloneabl
 
         if (pluginFile.isFile()) {
             try {
-                return new URL("jar:" + pluginFile.toURI() + "!/" + descriptor).openStream();
+                return Urls.create("jar:" + pluginFile.toURI() + "!/" + descriptor, Urls.HTTP_PROTOCOLS, HostValidator.DENY_COMMON_INFRASTRUCTURE_TARGETS).openStream();
             } catch (MalformedURLException e) {
                 throw new IllegalStateException(e);
             }
